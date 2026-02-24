@@ -7,7 +7,7 @@ const projects = [
   {
     title: 'VetChat AI - Asistente Veterinario',
     description: 'Chatbot inteligente de asistencia veterinaria potenciado por Gemini AI. Proporciona orientación sobre cuidados de mascotas, síntomas y recomendaciones de salud animal.',
-    image: null,
+    image: "/vet-chat.png",
     technologies: ['React', 'Gemini AI', 'Tailwind CSS', 'Next.js'],
     liveUrl: 'https://vet-app-qs56.vercel.app/vet-chat',
     githubUrl: 'https://github.com/Elzevasvj7/vet-app',
@@ -16,7 +16,7 @@ const projects = [
   {
     title: 'Sistema de Gestión Escolar',
     description: 'Plataforma completa para instituciones educativas con gestión de estudiantes, profesores, calificaciones y comunicación entre padres y escuela.',
-    image: null,
+    image: "/edsoft.png",
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     liveUrl: 'https://dev.d1hilyblwhqmh8.amplifyapp.com/',
     githubUrl: '#',
@@ -25,7 +25,7 @@ const projects = [
   {
     title: 'Finance Dashboard',
     description: 'Dashboard de finanzas personales con gráficos interactivos, seguimiento de ingresos/gastos, categorización automática y persistencia de datos.',
-    image: null,
+    image: "/finance-dashboard.png",
     technologies: ['Next.js', 'Recharts', 'TypeScript', 'Tailwind CSS'],
     liveUrl: 'https://presupuesto-app-henna.vercel.app/',
     githubUrl: 'https://github.com/Elzevasvj7/presupuesto-app',
@@ -34,11 +34,11 @@ const projects = [
     {
     title: 'DnD - Dungeons and Dragons Assistant',
     description: 'Asistente inteligente para jugadores de Dungeons and Dragons, proporcionando información sobre reglas, personajes y estrategias de juego.',
-    image: null,
+    image: "/dnd-assistant.png",
     technologies: ['React', 'Gemini AI', 'Tailwind CSS', 'Next.js'],
     liveUrl: 'https://vet-app-qs56.vercel.app/dnd',
     githubUrl: 'https://github.com/Elzevasvj7/vet-app',
-    featured: true,
+    featured: false,
   },
 ]
 
