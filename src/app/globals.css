@@ -3,33 +3,261 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background: #111111;
+  --background-elevated: rgba(24, 24, 24, 0.82);
+  --foreground: #f5f0e8;
+  --muted: #b2a99a;
+  --line: rgba(222, 209, 189, 0.14);
+  --accent: #e7d2b0;
+  --highlight: #fff8ee;
+  --surface: rgba(255, 255, 255, 0.03);
+  --surface-strong: rgba(255, 255, 255, 0.06);
+  --placeholder: rgba(178, 169, 154, 0.86);
+  --overlay: rgba(8, 8, 8, 0.58);
+  --ring: rgba(231, 210, 176, 0.08);
+  --hero-orb-1: rgba(255, 248, 238, 0.08);
+  --hero-orb-2: rgba(215, 194, 164, 0.07);
+  --hero-orb-3: rgba(200, 186, 164, 0.05);
+  --button-primary-text: #17120d;
+  --button-primary-start: #fff8ee;
+  --button-primary-end: #e7d2b0;
+  --button-primary-shadow: rgba(231, 210, 176, 0.16);
+  --button-primary-shadow-hover: rgba(231, 210, 176, 0.22);
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+:root[data-theme='light'] {
+  --background: #f6f0e7;
+  --background-elevated: rgba(255, 251, 245, 0.78);
+  --foreground: #221d18;
+  --muted: #76695d;
+  --line: rgba(97, 79, 62, 0.22);
+  --accent: #8c6747;
+  --highlight: #f4e6d3;
+  --surface: rgba(255, 251, 245, 0.72);
+  --surface-strong: rgba(255, 251, 245, 0.92);
+  --placeholder: rgba(102, 84, 68, 0.82);
+  --overlay: rgba(246, 240, 231, 0.56);
+  --ring: rgba(140, 103, 71, 0.1);
+  --hero-orb-1: rgba(186, 155, 120, 0.12);
+  --hero-orb-2: rgba(255, 255, 255, 0.42);
+  --hero-orb-3: rgba(214, 190, 161, 0.18);
+  --button-primary-text: #f5f0e8;
+  --button-primary-start: #dbc3a8;
+  --button-primary-end: #b88f69;
+  --button-primary-shadow: rgba(140, 103, 71, 0.12);
+  --button-primary-shadow-hover: rgba(140, 103, 71, 0.18);
+  color-scheme: light;
 }
 
 html {
+  min-height: 100%;
   scroll-behavior: smooth;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  min-height: 100%;
+  color: var(--foreground);
+  background:
+    radial-gradient(circle at top left, var(--hero-orb-2), transparent 24%),
+    radial-gradient(circle at 82% 12%, var(--hero-orb-1), transparent 16%),
+    linear-gradient(180deg, color-mix(in srgb, var(--background) 82%, black) 0%, var(--background) 44%, color-mix(in srgb, var(--background) 90%, black) 100%);
+  font-family: var(--font-body), sans-serif;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.3;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--foreground) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--foreground) 12%, transparent) 1px, transparent 1px);
+  background-size: 96px 96px;
+  mask-image: radial-gradient(circle at center, black, transparent 90%);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(color-mix(in srgb, var(--foreground) 18%, transparent) 0.7px, transparent 0.7px);
+  background-size: 16px 16px;
+  opacity: 0.05;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 24%, transparent);
+  color: var(--foreground);
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:target {
+  scroll-margin-top: 96px;
+}
+
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 78%, white 22%);
+  outline-offset: 3px;
+}
+
+section {
+  position: relative;
+}
+
+img {
+  display: block;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), sans-serif;
+    letter-spacing: -0.03em;
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-label {
+    @apply mb-5 inline-flex items-center gap-3 rounded-full border px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.34em];
+    background: color-mix(in srgb, var(--background) 80%, transparent);
+    border-color: var(--line);
+    color: var(--accent);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--foreground) 5%, transparent);
+  }
+
+  .section-title {
+    @apply max-w-3xl text-4xl leading-none sm:text-5xl lg:text-6xl;
+  }
+
+  .section-copy {
+    @apply max-w-2xl text-base leading-8 sm:text-lg;
+    color: var(--muted);
+  }
+
+  .panel {
+    @apply rounded-[28px] border;
+    border-color: var(--line);
+    background: linear-gradient(180deg, color-mix(in srgb, var(--background-elevated) 92%, white 8%), color-mix(in srgb, var(--background) 88%, transparent));
+    box-shadow:
+      0 18px 60px color-mix(in srgb, black 22%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--foreground) 4%, transparent);
+    backdrop-filter: blur(14px);
+  }
+
+  .button-primary {
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition duration-300;
+    color: var(--button-primary-text);
+    background: var(--button-primary-end);
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, white 24%, transparent),
+      0 10px 30px var(--button-primary-shadow);
+  }
+
+  .button-primary:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, white 24%, transparent),
+      0 14px 34px var(--button-primary-shadow-hover);
+  }
+
+  .button-secondary {
+    @apply inline-flex items-center justify-center rounded-full border px-6 py-3 text-sm font-semibold transition duration-300;
+    border-color: color-mix(in srgb, var(--line) 88%, var(--accent) 12%);
+    color: var(--foreground);
+    background: color-mix(in srgb, var(--surface-strong) 78%, transparent);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--foreground) 5%, transparent);
+  }
+
+  .button-secondary:hover {
+    transform: translateY(-1px);
+    border-color: color-mix(in srgb, var(--accent) 42%, transparent);
+    background: color-mix(in srgb, var(--surface-strong) 96%, transparent);
+  }
+
+  .text-gradient {
+    background-image: linear-gradient(120deg, color-mix(in srgb, var(--highlight) 96%, white 4%) 0%, var(--accent) 48%, color-mix(in srgb, var(--highlight) 84%, var(--foreground) 16%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glow-ring {
+    box-shadow:
+      0 0 0 1px var(--ring),
+      0 0 0 10px color-mix(in srgb, var(--accent) 3%, transparent);
+  }
+
+  .theme-toggle {
+    @apply inline-flex items-center justify-between rounded-full border px-2 py-2 text-xs font-semibold uppercase tracking-[0.28em] transition;
+    min-width: 124px;
+    color: var(--foreground);
+    border-color: color-mix(in srgb, var(--line) 88%, var(--accent) 12%);
+    background: color-mix(in srgb, var(--surface-strong) 82%, transparent);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--foreground) 5%, transparent);
+  }
+
+  .theme-toggle:hover {
+    border-color: color-mix(in srgb, var(--accent) 42%, transparent);
+    background: color-mix(in srgb, var(--surface-strong) 96%, transparent);
+  }
+
+  .theme-toggle-thumb {
+    @apply flex h-8 w-8 items-center justify-center rounded-full;
+    background: var(--button-primary-end);
+    color: color-mix(in srgb, var(--background) 86%, black);
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--accent) 16%, transparent);
+  }
+
+  .status-success {
+    @apply rounded-2xl border p-4;
+    border-color: color-mix(in srgb, #178a62 26%, var(--line));
+    background: color-mix(in srgb, #178a62 12%, var(--surface));
+    color: color-mix(in srgb, var(--foreground) 88%, #178a62 12%);
+  }
+
+  .tag-chip {
+    @apply rounded-full border px-3 py-1 text-xs uppercase tracking-[0.18em];
+    border-color: color-mix(in srgb, var(--line) 88%, var(--accent) 12%);
+    background: color-mix(in srgb, var(--surface) 88%, transparent);
+    color: color-mix(in srgb, var(--foreground) 88%, var(--muted) 12%);
+  }
+
+  .input-field {
+    @apply w-full outline-none transition;
+    border-color: color-mix(in srgb, var(--line) 88%, var(--accent) 12%);
+    background: color-mix(in srgb, var(--surface-strong) 78%, transparent);
+    color: var(--foreground);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--foreground) 5%, transparent);
+  }
+
+  .input-field::placeholder {
+    color: var(--placeholder);
+  }
+
+  .input-field:focus {
+    border-color: color-mix(in srgb, var(--accent) 52%, transparent);
+    background: color-mix(in srgb, var(--surface-strong) 96%, transparent);
+  }
 }
 
 @layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-primary-700;
-  }
-  
   .glass {
-    @apply backdrop-blur-md bg-white/10 border border-white/20;
+    background: var(--background-elevated);
+    border: 1px solid var(--line);
+    backdrop-filter: blur(14px);
   }
 }

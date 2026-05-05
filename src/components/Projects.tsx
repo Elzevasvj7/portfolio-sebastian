@@ -1,92 +1,160 @@
-'use client'
+"use client";
 
-import { ExternalLink, Github, FolderOpen } from 'lucide-react'
+import Image from "next/image";
+import { ArrowUpRight, ExternalLink, Github, FolderOpen } from "lucide-react";
 
-// Proyectos reales de Sebastian Camero
 const projects = [
   {
-    title: 'VetChat AI - Asistente Veterinario',
-    description: 'Chatbot inteligente de asistencia veterinaria potenciado por Gemini AI. Proporciona orientación sobre cuidados de mascotas, síntomas y recomendaciones de salud animal.',
+    title: "VetChat AI",
+    category: "AI assistant / Pet care",
+    description:
+      "Un asistente veterinario pensado para dar orientación clara y accesible sobre síntomas, cuidados y decisiones iniciales para mascotas.",
     image: "/vet-chat.png",
-    technologies: ['React', 'Gemini AI', 'Tailwind CSS', 'Next.js'],
-    liveUrl: 'https://vet-app-qs56.vercel.app/vet-chat',
-    githubUrl: 'https://github.com/Elzevasvj7/vet-app',
-    featured: true,
-  },
-  {
-    title: 'Sistema de Gestión Escolar',
-    description: 'Plataforma completa para instituciones educativas con gestión de estudiantes, profesores, calificaciones y comunicación entre padres y escuela.',
-    image: "/edsoft.png",
-    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS'],
-    liveUrl: 'https://dev.d1hilyblwhqmh8.amplifyapp.com/',
-    githubUrl: '#',
-    featured: true,
-  },
-  {
-    title: 'Finance Dashboard',
-    description: 'Dashboard de finanzas personales con gráficos interactivos, seguimiento de ingresos/gastos, categorización automática y persistencia de datos.',
-    image: "/finance-dashboard.png",
-    technologies: ['Next.js', 'Recharts', 'TypeScript', 'Tailwind CSS'],
-    liveUrl: 'https://presupuesto-app-henna.vercel.app/',
-    githubUrl: 'https://github.com/Elzevasvj7/presupuesto-app',
-    featured: true,
-  },
-    {
-    title: 'DnD - Dungeons and Dragons Assistant',
-    description: 'Asistente inteligente para jugadores de Dungeons and Dragons, proporcionando información sobre reglas, personajes y estrategias de juego.',
-    image: "/dnd-assistant.png",
-    technologies: ['React', 'Gemini AI', 'Tailwind CSS', 'Next.js'],
-    liveUrl: 'https://vet-app-qs56.vercel.app/dnd',
-    githubUrl: 'https://github.com/Elzevasvj7/vet-app',
+    technologies: ["React", "Gemini AI", "Tailwind CSS", "Next.js"],
+    liveUrl: "https://vet-app-qs56.vercel.app/vet-chat",
+    githubUrl: "https://github.com/Elzevasvj7/vet-app",
     featured: false,
   },
-]
+  {
+    title: "EdSoft",
+    category: "Education / Management platform",
+    description:
+      "Una plataforma para instituciones educativas donde la prioridad fue ordenar información compleja en una experiencia más clara y útil.",
+    image: "/edsoft.png",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Nest.js",
+      "PostgreSQL",
+    ],
+    liveUrl: "https://dev.d1hilyblwhqmh8.amplifyapp.com/",
+    githubUrl: "#",
+    featured: true,
+  },
+  {
+    title: "Finance Dashboard",
+    category: "Fintech / Personal tracking",
+    description:
+      "Un dashboard financiero enfocado en lectura rápida, jerarquía visual y seguimiento de hábitos desde una interfaz limpia.",
+    image: "/finance-dashboard.png",
+    technologies: [
+      "Next.js",
+      "Recharts",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+    ],
+    liveUrl: "https://presupuesto-app-henna.vercel.app/",
+    githubUrl: "https://github.com/Elzevasvj7/presupuesto-app",
+    featured: true,
+  },
+  {
+    title: "DnD Assistant",
+    category: "Gaming / AI helper",
+    description:
+      "Asistente para jugadores de Dungeons and Dragons creado para consultar reglas, estrategias y apoyo contextual durante la partida.",
+    image: "/dnd-assistant.png",
+    technologies: ["React", "Gemini AI", "Tailwind CSS", "Next.js"],
+    liveUrl: "https://vet-app-qs56.vercel.app/dnd",
+    githubUrl: "https://github.com/Elzevasvj7/vet-app",
+    featured: false,
+  },
+  {
+    title: "TaskFlow",
+    category: "Productivity / Task management",
+    description:
+      "Una app simple de tareas donde la intención fue construir una experiencia ligera, ordenada y fácil de usar todos los días.",
+    image: "/todo-list.png",
+    technologies: ["React", "Tailwind CSS", "Next.js"],
+    liveUrl: "https://pt-taskflow-sebastian.vercel.app/",
+    githubUrl: "https://github.com/Elzevasvj7/pt-taskflow-sebastian",
+    featured: true,
+  },
+];
 
 export default function Projects() {
+  const featuredProjects = projects.filter((project) => project.featured);
+  const moreProjects = projects.filter((project) => !project.featured);
+
   return (
-    <section id="proyectos" className="py-20 bg-slate-800/50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Mis <span className="text-gradient">Proyectos</span>
-          </h2>
-          <div className="w-20 h-1 bg-primary-500 mx-auto rounded-full mb-4" />
-          <p className="text-slate-400 max-w-2xl mx-auto">
-            Una selección de proyectos en los que he trabajado. Cada uno representa 
-            un desafío único y una oportunidad de aprendizaje.
-          </p>
+    <section id="proyectos" className="py-24 sm:py-28">
+      <div className="section-shell">
+        <div className="mb-16 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-3xl">
+            <div className="section-label">Proyectos</div>
+            <h2 className="section-title mb-5">
+              Una selección de trabajo donde busco que{" "}
+              <span className="text-gradient">
+                la interfaz hable tan bien como la funcionalidad
+              </span>
+              .
+            </h2>
+            <p className="section-copy">
+              Estos proyectos muestran cómo pienso producto, estructura y
+              experiencia visual. Me interesa que cada interfaz se vea bien, se
+              entienda rápido y tenga sentido en uso real.
+            </p>
+          </div>
+          <a
+            href="https://github.com/Elzevasvj7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button-secondary gap-2 self-start lg:self-auto"
+          >
+            <Github size={18} />
+            Explorar GitHub
+          </a>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
+        <div className="mb-8 grid gap-6 grid-cols-3">
+          {featuredProjects.map((project) => (
             <article
-              key={index}
-              className="group bg-slate-800 rounded-2xl overflow-hidden hover:transform hover:scale-[1.02] transition-all duration-300"
+              key={project.title}
+              className="panel group overflow-hidden transition duration-300 hover:-translate-y-1"
             >
-              {/* Project Image/Placeholder */}
-              <div className="aspect-video bg-gradient-to-br from-primary-500/20 to-primary-700/20 relative overflow-hidden">
+              <div className="relative aspect-[16/10] overflow-hidden border-b border-[color:var(--line)] bg-[linear-gradient(135deg,color-mix(in_srgb,var(--accent)_10%,transparent),transparent)]">
                 {project.image ? (
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="(max-width: 1280px) 100vw, 40vw"
+                    className="object-cover transition duration-500 group-hover:scale-105"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <FolderOpen className="w-16 h-16 text-primary-500/50" />
+                  <div className="flex h-full w-full items-center justify-center">
+                    <FolderOpen className="h-16 w-16 text-[color:var(--accent)]/40" />
                   </div>
                 )}
-                
-                {/* Overlay with links */}
-                <div className="absolute inset-0 bg-slate-900/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+
+                <div className="absolute left-4 top-4 rounded-full border border-[color:var(--line)] bg-[color:var(--background)] px-3 py-1 text-xs uppercase tracking-[0.24em] text-[color:var(--foreground)]">
+                  {project.category}
+                </div>
+              </div>
+
+              <div className="p-6">
+                <h3 className="mb-3 text-3xl font-semibold text-[color:var(--foreground)]">
+                  {project.title}
+                </h3>
+                <p className="mb-5 text-sm leading-7 text-[color:var(--muted)]">
+                  {project.description}
+                </p>
+                <div className="mb-6 flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                      <span key={tech} className="tag-chip">
+                        {tech}
+                      </span>
+                  ))}
+                </div>
+
+                <div className="flex gap-3">
                   <a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-full bg-primary-600 hover:bg-primary-700 transition-colors"
-                    aria-label="Ver proyecto"
+                    className="button-secondary h-12 w-12 rounded-2xl p-0"
+                    aria-label={`Ver ${project.title}`}
                   >
                     <ExternalLink size={20} />
                   </a>
@@ -94,60 +162,86 @@ export default function Projects() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-full bg-slate-700 hover:bg-slate-600 transition-colors"
-                    aria-label="Ver código"
+                    className="button-secondary h-12 w-12 rounded-2xl p-0"
+                    aria-label={`Ver código de ${project.title}`}
                   >
                     <Github size={20} />
                   </a>
-                </div>
-
-                {/* Featured badge */}
-                {project.featured && (
-                  <span className="absolute top-3 right-3 px-2 py-1 text-xs font-medium bg-primary-600 rounded-full">
-                    Destacado
-                  </span>
-                )}
-              </div>
-
-              {/* Project Info */}
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 group-hover:text-primary-400 transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-slate-400 text-sm mb-4 line-clamp-3">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-2 py-1 text-xs rounded-md bg-slate-700 text-slate-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
                 </div>
               </div>
             </article>
           ))}
         </div>
 
-        {/* Call to action */}
-        <div className="text-center mt-12">
-          <p className="text-slate-400 mb-4">
-            ¿Quieres ver más de mi trabajo?
-          </p>
-          <a
-            href="https://github.com/Elzevasvj7"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-primary-500 text-primary-400 hover:bg-primary-500/10 transition-colors"
-          >
-            <Github size={20} />
-            Ver mi GitHub
-          </a>
+        <div className="panel p-6 sm:p-8">
+          <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="mb-2 text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
+                Más trabajo
+              </p>
+              <h3 className="text-3xl font-semibold text-[color:var(--foreground)]">
+                Experimentos, utilidades y productos ligeros
+              </h3>
+            </div>
+            <p className="max-w-xl text-sm leading-7 text-[color:var(--muted)]">
+              También desarrollo proyectos más compactos donde pruebo ideas,
+              flujos y soluciones orientadas a usabilidad.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {moreProjects.map((project) => (
+              <article
+                key={project.title}
+                className="rounded-[24px] border border-[color:var(--line)] bg-[color:var(--surface)] p-5"
+              >
+                <div className="mb-4 flex items-center justify-between gap-4">
+                  <div>
+                    <p className="mb-2 text-xs uppercase tracking-[0.28em] text-[color:var(--muted)]">
+                      {project.category}
+                    </p>
+                    <h4 className="text-2xl font-semibold text-[color:var(--foreground)]">
+                      {project.title}
+                    </h4>
+                  </div>
+                  <div className="flex gap-2">
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="button-secondary h-11 w-11 rounded-2xl p-0"
+                      aria-label={`Ver ${project.title}`}
+                    >
+                      <ExternalLink size={18} />
+                    </a>
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="button-secondary h-11 w-11 rounded-2xl p-0"
+                      aria-label={`Ver código de ${project.title}`}
+                    >
+                      <Github size={18} />
+                    </a>
+                  </div>
+                </div>
+
+                <p className="mb-5 text-sm leading-7 text-[color:var(--muted)]">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                      <span key={tech} className="tag-chip">
+                        {tech}
+                      </span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -42,49 +42,52 @@ const technologies = [
 
 export default function Skills() {
   return (
-    <section id="habilidades" className="py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Mis <span className="text-gradient">Habilidades</span>
-          </h2>
-          <div className="w-20 h-1 bg-primary-500 mx-auto rounded-full mb-4" />
-          <p className="text-slate-400 max-w-2xl mx-auto">
-            Tecnologías y herramientas con las que trabajo para crear aplicaciones web modernas
-          </p>
+    <section id="habilidades" className="py-24 sm:py-28">
+      <div className="section-shell">
+        <div className="mb-16 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-3xl">
+            <div className="section-label">Habilidades</div>
+            <h2 className="section-title mb-5">
+              Stack sólido para llevar una idea <span className="text-gradient">de concepto a producto</span>.
+            </h2>
+            <p className="section-copy">
+              Trabajo con herramientas enfocadas en construir interfaces mantenibles, rápidas y visualmente refinadas.
+            </p>
+          </div>
+          <div className="panel max-w-sm px-5 py-4 text-sm text-[color:var(--foreground)]">
+            <p className="mb-2 text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">Actualmente explorando</p>
+            <p>Node.js, PostgreSQL, Prisma y testing para complementar el perfil frontend con criterio fullstack.</p>
+          </div>
         </div>
 
-        {/* Technology Icons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-16">
+        <div className="mb-16 flex flex-wrap gap-3">
           {technologies.map((tech, index) => (
             <div
               key={index}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800 hover:bg-slate-700 transition-all hover:scale-105 cursor-default"
+              className="glass cursor-default rounded-full px-4 py-3 transition-transform hover:-translate-y-1"
             >
               <span className="text-xl">{tech.icon}</span>
-              <span className="text-sm font-medium">{tech.name}</span>
+              <span className="ml-2 text-sm font-medium text-[color:var(--foreground)]">{tech.name}</span>
             </div>
           ))}
         </div>
 
-        {/* Skills Progress Bars */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {skills.map((skillGroup, groupIndex) => (
-            <div key={groupIndex} className="bg-slate-800/50 rounded-2xl p-6">
-              <h3 className="text-xl font-semibold mb-6 text-primary-400">
+            <div key={groupIndex} className="panel p-6 sm:p-7">
+              <h3 className="mb-6 text-2xl font-semibold text-[color:var(--foreground)]">
                 {skillGroup.category}
               </h3>
               <div className="space-y-5">
                 {skillGroup.items.map((skill, skillIndex) => (
                   <div key={skillIndex}>
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-sm text-slate-400">{skill.level}%</span>
+                    <div className="mb-2 flex justify-between">
+                      <span className="text-sm font-medium text-[color:var(--foreground)]">{skill.name}</span>
+                      <span className="text-sm text-[color:var(--muted)]">{skill.level}%</span>
                     </div>
-                    <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+                    <div className="h-2 overflow-hidden rounded-full bg-[color:var(--surface-strong)]">
                       <div
-                        className={`h-full bg-gradient-to-r ${skill.color} rounded-full transition-all duration-1000`}
+                        className={`h-full rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000`}
                         style={{ width: `${skill.level}%` }}
                       />
                     </div>
@@ -95,19 +98,15 @@ export default function Skills() {
           ))}
         </div>
 
-        {/* Learning Section */}
-        <div className="mt-12 text-center">
-          <p className="text-slate-400 mb-4">Actualmente aprendiendo:</p>
-          <div className="flex flex-wrap justify-center gap-3">
-            {['Node.js', 'PostgreSQL', 'Prisma', 'Testing'].map((tech, index) => (
-              <span
-                key={index}
-                className="px-4 py-2 rounded-full border border-primary-500/50 text-primary-400 text-sm hover:bg-primary-500/10 transition-colors"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
+        <div className="mt-12 flex flex-wrap gap-3">
+          {['Node.js', 'PostgreSQL', 'Prisma', 'Testing'].map((tech, index) => (
+            <span
+              key={index}
+              className="rounded-full border border-[color:var(--line)] px-4 py-2 text-sm text-[color:var(--foreground)] transition-colors hover:bg-[color:var(--surface)]"
+            >
+              {tech}
+            </span>
+          ))}
         </div>
       </div>
     </section>

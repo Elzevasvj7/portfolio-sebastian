@@ -10,12 +10,12 @@ export default function Home() {
   return (
     <>
       <Navigation />
-      <main>
+      <main className="relative isolate overflow-hidden">
         <Hero />
         <About />
         <Skills />
         <Projects />
-        {/* <Contact /> */}
+        <Contact />
       </main>
       <Footer />
     </>
